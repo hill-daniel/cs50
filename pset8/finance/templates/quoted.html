@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="col">
+            <h2>{{quote.name}}</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{quote.symbol}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{quote.price}}
+        </div>
+    </div>
+{% endblock %}

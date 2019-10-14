@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+    <!-- http://getbootstrap.com/docs/4.1/content/typography/ -->
+    <h1 class="mb-3">Form</h1>
+
+    <form class="needs-validation" novalidate action="/form" method="post">
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="firstName">First name</label>
+                <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First name" required autofocus>
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Please provide a valid first name</div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="lastName">Last name</label>
+                <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last name" required>
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Please provide a valid last name</div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="whisky">Your favorite Whisky</label>
+                <input type="text" class="form-control" name="whisky" id="whisky" placeholder="Favorite Whisky" required>
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Please provide a valid whisky</div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="mr-sm-2" for="whiskyType">Whisky Type</label>
+                <select class="custom-select mr-sm-2" id="whiskyType" name="whiskyType">
+                    <option value="unknown" selected>Don't know</option>
+                    <option value="bourbon">Bourbon</option>
+                    <option value="irish">Irish</option>
+                    <option value="scotch">Scotch</option>
+                    <option value="japanese">Japanese</option>
+                    <option value="indish">Indish</option>
+                 </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <label class="mr-sm-2" for="verdict">Verdict</label>
+                <textarea class="form-control" id="verdict" rows="3" maxlength="1024" name="verdict" placeholder="Why is it your favorite? Tasting notes etc...">
+                </textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="tac" required>
+                  <label class="form-check-label" for="tac">Agree to terms and conditions</label>
+                  <div class="invalid-feedback">You must agree before submitting</div>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+
+    <script>
+        // JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+          'use strict';
+          window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+              form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                  event.preventDefault();
+                  event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+              }, false);
+            });
+          }, false);
+        })();
+    </script>
+
+{% endblock %}

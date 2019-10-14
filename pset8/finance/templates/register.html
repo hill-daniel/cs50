@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Log In
+{% endblock %}
+
+{% block main %}
+<form action="/register" method="post" class="needs-validation" novalidate>
+  <div class="form-group">
+    <div id="username-alert" class="alert alert-warning" hidden role="alert">Username is already taken</div>
+    <input autocomplete="off" required autofocus class="form-control" name="username"
+           placeholder="Username" type="text" id="username">
+    <div class="invalid-feedback">Please provide a username</div>
+  </div>
+  <div class="form-group">
+    <input class="form-control" required name="password" placeholder="Password" type="password">
+    <div class="invalid-feedback">Please provide password</div>
+  </div>
+  <div class="form-group">
+    <input class="form-control" required name="confirmation" placeholder="Confirm" type="password">
+    <div class="invalid-feedback">Please provide confirmation</div>
+  </div>
+  <button class="btn btn-primary" type="submit">Register</button>
+</form>
+
+<script>
+  // JavaScript for disabling form submissions if chosen user name already exists
+  (function () {
+    'use strict';
+    window.addEventListener('load', function () {
+
+      var userNameIsAvailable = function (username) {
+        if (!username) {
+          return true;
+        }
+        console.log('user: ' + username);
+        var userNameIsAvailable;
+        $.ajax({
+          url: "/check",
+          type: "get",
+          data: {'username': username},
+          async: false,
+          success: function (userStatus) {
+              console.log('userStatus: ' + userStatus);
+            userNameIsAvailable = userStatus;
+          },
+          error: function () {
+            console.log('failed');
+          }
+        });
+        return userNameIsAvailable;
+      };
+
+        var forms = document.getElementsByClassName('needs-validation');
+        var userInput = document.getElementById('username');
+        var userAlert = document.getElementById('username-alert');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (!userNameIsAvailable(userInput.value)) {
+                userAlert.removeAttribute("hidden");
+                event.preventDefault();
+                event.stopPropagation();
+            } else {
+                userAlert.setAttribute("hidden", true)
+            }
+
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+
+    }, false);
+  })();
+</script>
+{% endblock %}

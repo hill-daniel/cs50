@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    {% if message %}
+   <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Success!</h4>
+        <p>{{ message }}</p>
+    </div>
+    {% endif %}
+    <div class="row">
+        <div class="col">
+            <h2>Current cash balance:</h2>
+        </div>
+    </div>
+      <div class="row">
+        <div class="col">
+            <h4 class="positiveCashValue">{{balance}}</h4>
+        </div>
+    </div>
+     <div class="row">
+        <div class="col">
+            <h2>Total portfolio value (incl. cash):</h2>
+        </div>
+    </div>
+      <div class="row">
+        <div class="col">
+            <h4 class="positiveCashValue">{{total}}</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+
+            <table class="table table-striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Symbol</th>
+                    <th>Amount</th>
+                    <th>Price</th>
+                    <th>Value</th>
+                </tr>
+                {%for stock in stocks%}
+                <tr>
+                    <td>{{stock.name}}</td>
+                    <td>{{stock.symbol}}</td>
+                    <td>{{stock.amount}}</td>
+                    <td>{{stock.currentPrice}}</td>
+                    <td>{{stock.value}}</td>
+                </tr>
+                {%endfor%}
+            </table>
+        </div>
+    </div>
+{% endblock %}

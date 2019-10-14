@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="col">
+
+            <table class="table table-striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Symbol</th>
+                    <th>Price</th>
+                    <th>Amount</th>
+                    <th>Transaction</th>
+                    <th>Date</th>
+                </tr>
+                {%for row in rows%}
+                <tr>
+                    <td>{{row.name}}</td>
+                    <td>{{row.symbol}}</td>
+                    <td>{{row.price}}</td>
+                    <td>{{row.amount}}</td>
+                    {% if row.transaction == "SELL" %}
+                    <td class="negativeCashValue">{{row.transaction}}</td>
+                    {% else %}
+                    <td class="positiveCashValue">{{row.transaction}}</td>
+                    {% endif %}
+                    <td>{{row.timestamp}}</td>
+                </tr>
+                {%endfor%}
+            </table>
+        </div>
+    </div>
+{% endblock %}

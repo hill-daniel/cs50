@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <h1 class="mb-3">Sheet</h1>
+    <div class="row">
+        <div class="col">
+            <table class="table table-striped">
+                <tr>
+                    {%for i in range(0, len)%}
+                    <th>{{header[i]}}</th>
+                    {%endfor%}
+                </tr>
+
+                {%for row in rows%}
+                <tr>
+                    <td>{{row.firstName}}</td>
+                    <td>{{row.lastName}}</td>
+                    <td>{{row.whisky}}</td>
+                    <td>{{row.whiskyType}}</td>
+                    <td>{{row.verdict}}</td>
+                </tr>
+                {%endfor%}
+            </table>
+
+        </div>
+    </div>
+{% endblock %}

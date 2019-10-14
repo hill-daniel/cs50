@@ -1,0 +1,33 @@
+.header-image {
+  background-image: url("header.jpg");
+  object-fit: cover;
+
+  width: 1200px;
+  height: 280px;
+}
+
+.caption {
+  font-size: 9px;
+  color: grey;
+  text-align: right;
+}
+
+.header-caption {
+  margin-left: 80px;
+  font-size: 200px;
+  color: white;
+  text-align: left;
+}
+
+.main-text {
+  margin-top: 15px;
+}
+
+#blog-text {
+  font-size: 9px;
+  text-align: justify;
+}
+
+img {
+  max-height: 200px;
+}
